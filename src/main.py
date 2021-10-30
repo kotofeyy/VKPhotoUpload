@@ -1,18 +1,11 @@
-import requests
-
-
-def getVKPhoto(token, url, userId, albumId):
-    params = dict(access_token=token, user_ids=userId)
-    return requests.get(url, params).json()
+from api.VKApi import vkApi
 
 
 def main():
 
-    token = ""  # персональный токен
-    url = 'https://api.vk.com/method/users.get?v=5.131'
-    userId = ""  # id пользователя
-    res = getVKPhoto(token, url, userId, 'kek')
-    print(res["response"])
+    vk = vkApi(token, userId)
+    res = vk.getPhotos("saved", 1)
+    print(res)
 
 
 if __name__ == '__main__':
